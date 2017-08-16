@@ -24,7 +24,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []
-    
+
 
     class Meta:
         verbose_name = _('user')
@@ -52,7 +52,7 @@ class Personal(models.Model):
     apellido_materno = models.CharField(max_length=100, blank=True)
     fecha_creacion = models.DateTimeField('dia_creado', auto_now_add=True)
     puesto = models.CharField(max_length=100, blank=True)
-    usuario = models.ForeignKey('User',on_delete=models.CASCADE, null=True, unique=True)
+    usuario = models.ForeignKey('User',on_delete=models.CASCADE, blank=True, unique=True, null=True)
     class Meta:
         verbose_name = _('persona')
         verbose_name_plural = _('Personal')

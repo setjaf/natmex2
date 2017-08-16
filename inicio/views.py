@@ -21,7 +21,7 @@ def index(request):
     if request.user.is_authenticated:
         p=Personal.objects.get(usuario=request.user.id)
         context={'nombre':p.nombre,'admin':request.user.is_admin,'personal':request.user.is_personal}
-        return HttpResponse(render(request, 'inicio/index.html',context))
+        return HttpResponse(render(request, 'inicio/recepcion.html',context))
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -47,17 +47,17 @@ def otra(request):
     if request.user.is_authenticated:
         p=Personal.objects.get(usuario=request.user.id)
         context={'nombre':p.nombre}
-
+        response=HttpResponse(content_type="application/pdf")
+        response['Content-Disposition'] = 'filename="somefilename.pdf"'
         buffer=BytesIO()
 
         c = canvas.Canvas(buffer,pagesize=A4)
-        c.drawString(100,750,"Welcome to Reportlab!")
+        c.drawString(100,750,p.nombre)
         c.save()
         pdf = buffer.getvalue()
         buffer.close()
 
-        response=HttpResponse(content_type="application/pdf")
-        response['Content-Dispositon']='attachment=filename=prueba.pdf'
+
         response.write(pdf)
 
         return response

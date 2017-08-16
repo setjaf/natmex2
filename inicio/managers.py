@@ -1,3 +1,4 @@
+from  django.contrib.auth import hashers
 from django.contrib.auth.base_user import BaseUserManager
 
 class UserManager(BaseUserManager):
@@ -12,6 +13,7 @@ class UserManager(BaseUserManager):
         username = username
 
         user = self.model(username=username, **extra_fields)
+        print(password)
         user.set_password(password)
         user.is_staff=True
         user.save(using=self._db)
