@@ -31,7 +31,8 @@
 
         <div class="col right salir">
   				<form class="" method="post">{% csrf_token %}
-  				  <button class="btn waves-effect waves-light" type="submit" method="post">Salir</button>
+            <input type="text" name="salir" value="True" style="display:none">
+  				  <button class="btn waves-effect waves-light" type="submit">Salir</button>
   				</form>
   			</div>
       </div>

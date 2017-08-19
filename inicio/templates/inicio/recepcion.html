@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,15 +26,15 @@
 
 			<div class="col l8 m8 s8 offset-l2 offset-m2 offset-s2">
 
-				<form class="" action="">
+				<form class="" action="" method="post">{% csrf_token %}
 
 						<div class="input-field col s12 m12 l12">
 		          <i class="material-icons prefix" style="color:#8f8f8f;">account_box</i>
-		          <input id="icon_prefix" type="text" class="validate">
+		          {{form.username}}
 		        </div>
 						<div class="input-field col s12 m12 l12">
 		          <i class="material-icons prefix" style="color:#8f8f8f;">lock</i>
-		          <input id="icon_prefix" type="password" class="validate">
+		          {{form.password}}
 		        </div>
 						<button class="btn waves-effect waves-light" type="submit" method="post">Enviar</button>
 
